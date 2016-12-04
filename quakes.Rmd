@@ -1,0 +1,24 @@
+---
+title: "Quakes off of Fiji"
+author: "Luke Shulman"
+date: "December 4, 2016"
+output: beamer_presentation
+---
+
+##Quakes off of Fiji
+This map displays the results of 1000 seismic observations taken off the coast of FIji
+
+
+
+```{r}
+library(leaflet)
+df <- data.frame(mag=quakes[["mag"]], lat=quakes[["lat"]], long=quakes[["long"]])
+
+df %>%
+    leaflet() %>%
+    addTiles() %>%
+    addCircles(weight = 1, radius=df$mag ^ 4)
+
+
+
+```
